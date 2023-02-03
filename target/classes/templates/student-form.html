@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Save StudentRegistration</title>
+</head>
+
+<body>
+	
+	<div class="container">
+	
+		<h3>StudentRegistration Directory</h3>
+		<hr>
+		<span sec:authentication="name">Username</span>
+		<p class="h4 mb-4">Save StudentRegistration </p>
+	
+		<form action="#" th:action="@{/courses/savestudentRegistrations}"
+						 th:object="${studentregistration}" method="GET">
+			
+			
+			<input type="text" th:field="*{studentid}"
+					class="form-control mb-4 col-4" placeholder="studentid">
+			<input type="text" th:field="*{name}"
+					class="form-control mb-4 col-4" placeholder="name">
+			<input type="text" th:field="*{yearreg}"
+					class="form-control mb-4 col-4" placeholder="yearreg">
+			<input type="text" th:field="*{currentsemester}"
+					class="form-control mb-4 col-4" placeholder="currentsemester">
+			<input type="text" th:field="*{id}"
+					class="form-control mb-4 col-4" placeholder="id">
+						
+			
+				
+			<button type="submit" class="btn btn-info col-2">Save</button>
+						
+		</form>
+	
+		<hr>
+		<a th:href="@{/courses/list}">Back to Courses List</a>
+		
+	</div>
+</body>
+
+</html>

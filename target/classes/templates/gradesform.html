@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Save Course</title>
+</head>
+
+<body>
+	
+	<div class="container">
+	
+		<h3>Grades Directory</h3>
+		<hr>
+		<span sec:authentication="name">Username</span>
+		<p class="h4 mb-4">Save Grades </p>
+	
+		<form action="#" th:action="@{/grades/savegrades}"
+						 th:object="${grades}" method="POST">
+			
+			
+			<input type="text" th:field="*{stid}"
+					class="form-control mb-4 col-4" placeholder="stid">
+			<input type="text" th:field="*{finalexam}"
+					class="form-control mb-4 col-4" placeholder="finalexam">
+			<input type="text" th:field="*{project}"
+					class="form-control mb-4 col-4" placeholder="project">
+			
+				
+			<button type="submit" class="btn btn-info col-2">Save</button>
+						
+		</form>
+	
+		<hr>
+		<a th:href="@{/courses/list}">Back to Courses List</a>
+		
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Course Directory</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>StudentRegistrations Directory</h3>
+	<hr>
+	<span sec:authentication="name">Username</span>
+		<!-- Add a button -->
+	<a th:href="@{/grades/addgrades}"
+		class="btn btn-primary btn-sm mb-3">
+		Add StudentGrades
+	</a>
+	<a th:href="@{/courses/addstudentRegistrations(courseId=${courseId})}" 
+	 class="btn btn-info btn-sm">
+ 		ADD     
+</a>
+	
+	
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>Studentid</th>
+				<th>Name</th>
+				<th>Yearreg</th>
+				<th>Currentsemester</th>
+				<th>Id</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+				<tr th:each="tempstudentregistrations : ${studentregistrations}">
+			
+			
+				<td th:text="${tempstudentregistrations.studentid}" />
+				<td th:text="${tempstudentregistrations.name}" />
+				<td th:text="${tempstudentregistrations.yearreg}" />
+				<td th:text="${tempstudentregistrations.currentsemester}" />
+				<td th:text="${tempstudentregistrations.id}" />
+				<td>
+				
+					<!-- Add "delete" button/link -->
+					<a th:href="@{/courses/deletestudentRegistrations(studentId=${tempstudentregistrations.studentid})}"
+					   class="btn btn-info btn-sm"
+					     onclick="if (!(confirm('Are you sure you want to delete this Student?'))) return false">
+						Delete
+					</a>
+					<!-- Add "update" button/link -->
+					<a th:href="@{/courses/updatestudentRegistrations(studentId=${tempstudentregistrations.studentid})}"
+					   class="btn btn-info btn-sm">
+						Update
+					</a>
+					<!-- Add "grades" button/link -->
+					<a th:href="@{/grades(studentId=${tempstudentregistrations.studentid})}"
+					   class="btn btn-info btn-sm">
+						Grades
+					</a>
+			
+			</tr>
+		</tbody>		
+	</table>
+		
+		 
+</div>
+	
+			
+			
+			
+</body>
+</html>

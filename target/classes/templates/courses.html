@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Course Directory</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Course Directory</h3>
+	<hr>
+	<span sec:authentication="name">Username</span>
+	<!-- Add a button -->
+	<a th:href="@{/courses/showFormForAdd}"
+		class="btn btn-primary btn-sm mb-3">
+		Add Course
+	</a>
+	
+	
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Syllabus</th>
+				<th>Year</th>
+				<th>Semester</th>
+				<th>Description</th>
+				<th>Teacher</th>
+				<th>Usrname</th>
+				<th>FinalExamWeight</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="tempCourse : ${course}">
+			
+			
+				<td th:text="${tempCourse.id}" />
+				<td th:text="${tempCourse.name}" />
+				<td th:text="${tempCourse.syllabus}" />
+				<td th:text="${tempCourse.year}" />	
+				<td th:text="${tempCourse.semester}" />
+				<td th:text="${tempCourse.description}" />	
+				<td th:text="${tempCourse.teacher}" />	
+				<td th:text="${tempCourse.usrname}" />
+				<td th:text="${tempCourse.finalexamweight}" />
+			
+				
+				<td>
+					<!-- Add "update" button/link -->
+					<a th:href="@{/courses/showFormForUpdate(courseId=${tempCourse.id})}"
+					   class="btn btn-info btn-sm">
+						Update
+					</a>
+					
+					<!-- Add "delete" button/link -->					
+					<a th:href="@{/courses/delete(courseId=${tempCourse.id})}"
+					   class="btn btn-danger btn-sm"
+					   onclick="if (!(confirm('Are you sure you want to delete this Course?'))) return false">
+						Delete
+					</a>
+					<!-- Add "StudentRegistration" button/link -->					
+					<a th:href="@{/courses/studentRegistrations(courseId=${tempCourse.id})}"
+					   class="btn btn-info btn-sm">
+						StudentRegistrations
+					   
+					</a>
+					<!-- Add "Statistics" button/link -->					
+					<a th:href="@{/courses/statistics(courseId=${tempCourse.id},courseName=${tempCourse.name})}"
+					   class="btn btn-info btn-sm">
+						Statistics
+					   
+					</a>
+				</td>
+				
+				
+			</tr>
+		</tbody>		
+	</table>
+	
+</div>
+	
+</body>
+</html>
